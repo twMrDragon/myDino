@@ -9,17 +9,20 @@ using System.Windows.Forms;
 
 namespace myDino
 {
-    public class showPixelNumber:PictureBox
+    public class showPixelNumber : Panel
     {
-        private string test = @"C:\Users\Joseph\source\repos\myDino\myDino\bin\Debug\pixelNumberBlack\tile000.png";
+        private Image[] numberImages = null;
+
+        public Image[] NumberImages
+        {
+            get => numberImages;
+            set => numberImages = value;
+        }
+
         public showPixelNumber()
         {
-            this.SizeMode = PictureBoxSizeMode.Zoom;
-            using (FileStream fs = File.OpenRead(test))
-            {
-                Image image = Image.FromStream(fs);
-                this.Image = image;
-            }
+
         }
+
     }
 }
