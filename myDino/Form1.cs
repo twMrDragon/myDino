@@ -14,7 +14,7 @@ namespace myDino
 {
     public partial class Form1 : Form
     {
-        string floderName = System.Windows.Forms.Application.StartupPath + @"\character";
+        string characterFolderName = System.Windows.Forms.Application.StartupPath + @"\..\..\character";
         Image[] characterImages = null;
         enum gameState
         {
@@ -26,7 +26,7 @@ namespace myDino
         {
             List<Image> images = new List<Image>();
             //讀取腳色資料夾下的全部檔案名稱
-            foreach (string filename in System.IO.Directory.GetFiles(floderName))
+            foreach (string filename in System.IO.Directory.GetFiles(characterFolderName))
             {
                 using (FileStream fs = File.OpenRead(filename))
                 {
