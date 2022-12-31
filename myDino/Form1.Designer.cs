@@ -29,46 +29,75 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.backgroundTimer = new System.Windows.Forms.Timer(this.components);
+            this.scoreTimer = new System.Windows.Forms.Timer(this.components);
+            this.jumpTimer = new System.Windows.Forms.Timer(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.mainTimer = new System.Windows.Forms.Timer(this.components);
             this.characterAnimationTimer = new System.Windows.Forms.Timer(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // backgroundTimer
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(9, 353);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(75, 80);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Tag = "0";
+            this.backgroundTimer.Interval = 5;
+            this.backgroundTimer.Tick += new System.EventHandler(this.backgroundTimer_Tick);
+            // 
+            // scoreTimer
+            // 
+            this.scoreTimer.Interval = 50;
+            this.scoreTimer.Tick += new System.EventHandler(this.scoreTimer_Tick);
+            // 
+            // jumpTimer
+            // 
+            this.jumpTimer.Interval = 20;
+            this.jumpTimer.Tick += new System.EventHandler(this.jumpTimer_Tick);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Consolas", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(29, 32);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "0";
+            // 
+            // mainTimer
+            // 
+            this.mainTimer.Interval = 10;
+            this.mainTimer.Tick += new System.EventHandler(this.mainTimer_Tick);
             // 
             // characterAnimationTimer
             // 
-            this.characterAnimationTimer.Interval = 50;
             this.characterAnimationTimer.Tick += new System.EventHandler(this.characterAnimationTimer_Tick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(736, 442);
-            this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Controls.Add(this.label1);
+            this.DoubleBuffered = true;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Timer backgroundTimer;
+        private System.Windows.Forms.Timer scoreTimer;
+        private System.Windows.Forms.Timer jumpTimer;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Timer mainTimer;
         private System.Windows.Forms.Timer characterAnimationTimer;
     }
 }
