@@ -14,16 +14,17 @@ namespace myDino
 {
     public partial class Form1 : Form
     {
-        string characterFolderName = System.Windows.Forms.Application.StartupPath + @"\..\..\character";
         Image[] characterImages = null;
+        Image backgroundImage = null;
         enum gameState
         {
             playing,
             end
         }
         gameState nowGameState = gameState.end;
-        private void getCharacterImage()
+        private void loadCharacterImage()
         {
+            string characterFolderName = System.Windows.Forms.Application.StartupPath + @"\..\..\character";
             List<Image> images = new List<Image>();
             //讀取腳色資料夾下的全部檔案名稱
             foreach (string filename in System.IO.Directory.GetFiles(characterFolderName))
@@ -35,6 +36,15 @@ namespace myDino
                 }
             }
             characterImages = images.ToArray();
+        }
+        private void loadBackground()
+        {
+            string backgroundPath = @"";
+            using (FileStream fs = File.OpenRead(backgroundPath))
+            {
+                Image image = Image.FromStream (fs);
+                backgroundImage= image;
+            }
         }
         private void changeGameState()
         {
@@ -60,14 +70,12 @@ namespace myDino
         public Form1()
         {
             InitializeComponent();
-            getCharacterImage();
+            //初始化
+            loadCharacterImage();
+            loadBackground();
             //預設腳色圖片
             if (characterImages != null && characterImages.Length != 0)
                 pictureBox1.Image = characterImages[0];
-
-            //獲取已安裝字體
-            //InstalledFontCollection installedFontCollection = new InstalledFontCollection();
-            //comboBox1.Items.AddRange(installedFontCollection.Families.Select(x=>x.Name).ToArray());
         }
 
         private void characterAnimationTimer_Tick(object sender, EventArgs e)
@@ -75,6 +83,7 @@ namespace myDino
             //切換腳色圖片
             int nowImageIndex = int.Parse(pictureBox1.Tag.ToString());
             nowImageIndex += 1;
+
             //到達最後一個圖片
             if (nowImageIndex == characterImages.Length)
                 nowImageIndex = 0;
