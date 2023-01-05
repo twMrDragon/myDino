@@ -85,6 +85,7 @@ namespace myDino
         {
             string resPath = System.Windows.Forms.Application.StartupPath + @"\..\..\res\";
             myBackgroundImage = loadImage(resPath + "background.jpg");
+            this.BackgroundImage = myBackgroundImage;
             restartImage = loadImage(resPath + "restart.png");
         }
 
